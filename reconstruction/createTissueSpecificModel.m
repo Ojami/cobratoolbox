@@ -487,7 +487,8 @@ for i = 1:numel(AllRules)
     orFind = textscan(EachRule,'%s','delimiter','or'); orFind = orFind{1};
     orFind(cellfun('isempty',orFind)) = [];
 
-    regexp(orFind,'(\d*)[.](\d*)|(\d*)|(\w+)(\d*)[.](\d*)|(\w+)(\d+)','match')
+    GPR_temp = regexp(orFind,'(\d*)[.](\d*)|(\d*)|(\w+)(\d*)[.](\d*)|(\w+)(\d+)','match');
+    GPR_temp(cellfun('isempty',GPR_temp)) =[];
     corrRxns = [corrRxns;repmat(model.rxns(i),numel(GPR_temp),1)];
     AllGPR = [AllGPR;GPR_temp];
 end
